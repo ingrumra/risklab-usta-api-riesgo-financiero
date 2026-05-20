@@ -1,0 +1,32 @@
+# render.yaml – Configuración de deploy en Render PaaS
+# Sube este archivo a la raíz del repositorio para deploy automático.
+# Documentación: https://render.com/docs/render-yaml-spec
+#
+# Autoras: Alejandra Sepúlveda · Ingrid Umbacia Ramírez
+
+services:
+  - type: web
+    name: risklab-usta-backend
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    rootDir: backend
+    envVars:
+      - key: TICKERS
+        value: MSI,XOM,JNJ,PG,UL,TSM
+      - key: BENCHMARK
+        value: ^GSPC
+      - key: RF_TICKER
+        value: ^IRX
+      - key: DEFAULT_PERIOD
+        value: 2y
+      - key: VAR_CONFIDENCE
+        value: "0.95"
+      - key: N_PORTFOLIOS
+        value: "10000"
+      - key: FRED_API_KEY
+        sync: false    # ingresar manualmente en el dashboard de Render
+      - key: DATABASE_URL
+        value: sqlite:///./risklab.db
+    healthCheckPath: /
+    autoDeploy: true

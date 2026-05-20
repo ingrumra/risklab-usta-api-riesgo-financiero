@@ -1,0 +1,33 @@
+# Entorno virtual
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Variables de entorno
+.env
+.env.*
+
+# Bases de datos locales
+
+*.sqlite
+*.sqlite3
+
+# VS Code
+.vscode/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Archivos temporales
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
